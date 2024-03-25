@@ -16,6 +16,13 @@ const UserSchema = new Schema({
         trim:true,
         unique: true,
     },
+    password:{
+        type: String,
+        required: [true,`password is required`],
+        trim:true,
+        lowercase:true,
+        minLenght: [5, `the password shoud contain atleast 5 characters`],
+    },
     phone:{
         type: String,
         required: [true, `the phone number is required`],
@@ -45,6 +52,10 @@ UserSchema.methods ={
             process.env.ACCESS_TOKEN,
             {expiresIn:'5m'}
         )
+    },
+
+    validatePassword: async function(password){
+        return await bcrypt.compare(password,this.password)
     }
 }
 

@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 
 app.use('/usermanagement/v1/user', userRouter)
-app.use('/usermanagement/v2/auth', authRoute)
+app.use('/usermanagement/v1/auth', authRoute)
 
 
 export {app}

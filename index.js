@@ -3,8 +3,18 @@ config()
 import {app} from './app.js'
 import session from 'express-session'
 import connectDB from './src/config/db.config.js'
+import {v2 as cloudinary} from 'cloudinary';
 
 const PORT=process.env.PORT||7071
+
+
+          
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET_KEY
+});
+
 connectDB()
 
 app.use(session({
