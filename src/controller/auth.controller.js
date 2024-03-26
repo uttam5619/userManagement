@@ -29,6 +29,7 @@ const signUp =async (req,res)=>{
         name,
         email,
         password,
+        phone,
         avatar:{public_id:email, secure_url:profileImage}
     })
     if(!user){

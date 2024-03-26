@@ -20,12 +20,12 @@ const UserSchema = new Schema({
         type: String,
         required: [true,`password is required`],
         trim:true,
-        lowercase:true,
+        lowercase: true,
         minLenght: [5, `the password shoud contain atleast 5 characters`],
     },
     phone:{
         type: String,
-        required: [true, `the phone number is required`],
+        required: [true, `phone number is required`],
     },
     avatar:{
         public_id:{
@@ -39,10 +39,9 @@ const UserSchema = new Schema({
     }
 },{timestamps: true})
 
-UserSchema.pre('save', async(next)=>{
-    if(!this.isModified('password'))return next()
-    this.password= await bcrypt.hash(password, 10)
-    next()
+UserSchema.pre('save', async function(next){
+    if( !this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 10)
 })
 
 UserSchema.methods ={
